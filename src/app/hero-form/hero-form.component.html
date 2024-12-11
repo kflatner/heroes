@@ -1,0 +1,62 @@
+<div class="container mx-auto max-w-md p-4">
+  <h1 class="text-2xl font-bold mb-4 cursor-pointer" (click)="toggleForm()">Make your Desired Hero</h1>
+  
+  <div [@rollDown]="isFormVisible ? 'visible' : 'hidden'" class="form-container">
+    <div [hidden]="submitted">
+      <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
+        <div class="form-group mb-4">
+          <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+          <input type="text" class="form-control block w-full mt-1 border border-gray-300 rounded-md" id="name"
+                 required
+                 [(ngModel)]="model.name" name="name"
+                 #name="ngModel">
+          <div [hidden]="name.valid || name.pristine" class="text-red-600 text-sm mt-1">
+            Name is required
+          </div>
+        </div>
+
+        <div class="form-group mb-4">
+          <label for="alterEgo" class="block text-sm font-medium text-gray-700">Alter Ego</label>
+          <input type="text" class="form-control block w-full mt-1 border border-gray-300 rounded-md" id="alterEgo"
+                 [(ngModel)]="model.alterEgo" name="alterEgo">
+        </div>
+
+        <div class="form-group mb-4">
+          <label for="power" class="block text-sm font-medium text-gray-700">Hero Power</label>
+          <select class="form-control block w-full mt-1 border border-gray-300 rounded-md" id="power"
+                  required
+                  [(ngModel)]="model.power" name="power"
+                  #power="ngModel">
+            <option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
+          </select>
+          <div [hidden]="power.valid || power.pristine" class="text-red-600 text-sm mt-1">
+            Power is required
+          </div>
+        </div>
+
+        <div class="flex space-x-4">
+          <button type="submit" class="btn btn-success bg-green-500 text-white py-2 px-4 rounded hover:bg-green-700" [disabled]="!heroForm.form.valid">Submit</button>
+          <button type="button" class="btn btn-default bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-700" (click)="newHero(); heroForm.reset()">New Hero</button>
+        </div>
+      </form>
+    </div>
+
+    <div [hidden]="!submitted">
+      <h2 class="text-xl font-bold mb-4">You submitted the following:</h2>
+      <div class="mb-2">
+        <div class="font-medium">Name:</div>
+        <div>{{ model.name }}</div>
+      </div>
+      <div class="mb-2">
+        <div class="font-medium">Alter Ego:</div>
+        <div>{{ model.alterEgo }}</div>
+      </div>
+      <div class="mb-2">
+        <div class="font-medium">Power:</div>
+        <div>{{ model.power }}</div>
+      </div>
+      <br>
+      <button type="button" class="btn btn-primary bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-700" (click)="submitted=false">Edit</button>
+    </div>
+  </div>
+</div>

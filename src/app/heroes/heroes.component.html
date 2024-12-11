@@ -1,0 +1,20 @@
+<h2>My Heroes</h2>
+
+<div class="heroes-grid">
+  <div *ngFor="let hero of heroes" class="hero-card">
+    <a routerLink="/detail/{{hero.id}}" class="hero-link">
+      <img [src]="hero.image" alt="{{hero.name}}" class="hero-image">
+      <div class="hero-name">
+        <span class="badge" style="color: #ff5733;">{{hero.id}}</span> <span style="color: #3498db;">{{hero.name}}</span>
+
+      </div>
+    </a>
+    <button type="button" class="delete" title="delete hero" (click)="delete(hero)">x</button>
+  </div>
+</div>
+
+<div>
+  <label for="new-hero">Hero name: </label>
+  <input id="new-hero" #heroName />
+  <button type="button" class="add-button" (click)="add(heroName.value); heroName.value=''">Add hero</button>
+</div>

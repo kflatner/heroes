@@ -1,0 +1,19 @@
+<!-- rival.component.html -->
+<div *ngIf="rival">
+  <h2 style="color: #3783a7;">{{ rival.name | uppercase }} Details</h2>
+  <div><span>id: </span>{{ rival.id }}</div>
+  <div>
+    <label for="rival-name">Rival name: </label>
+    <input id="rival-name" [(ngModel)]="rival.name" placeholder="Rival name" readonly/>
+  </div>
+  <div>
+    <img [src]="rival.image" alt="{{rival.name}}" class="hero-image" style="width: 300px; height: auto;">
+  </div>
+  <div>
+    <button type="button" (click)="goBack()" style="margin-right: 10px;">Go back</button>
+    <button type="button" (click)="save()" style="margin-right: 10px;">Save</button>
+    <button type="button" (click)="navigateToRival()" style="margin-right: 10px;">Rival</button>
+  </div>
+</div>
+
+  

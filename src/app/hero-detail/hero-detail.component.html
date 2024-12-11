@@ -1,0 +1,15 @@
+<div *ngIf="hero">
+  <h2 style="color: #3783a7;">{{hero.name | uppercase}} Details <img [src]="hero.image" alt="{{hero.name}}" class="hero-image" style="width: 300px; height: auto;"></h2>
+  <div><span>id: </span>{{hero.id}}</div>
+  <div>
+    <label for="hero-name">Change name: </label>
+    <input id="hero-name" [(ngModel)]="hero.name" placeholder="Hero name"/>
+  </div>
+  <div>
+    <label for="rival-id">Rival ID: </label>
+    <input id="rival-id" [(ngModel)]="hero.rivalId" placeholder="Rival ID" type="number"/>
+  </div>
+  <div>
+    <button type="button" (click)="goBack()" style="margin-right: 10px;">Go back</button>
+    <button type="button" (click)="save()" style="margin-right: 10px;">Save</button>
+    <button type="button" (click)="navigateToRival()" style="margin-right: 10px;">Rival</button>
